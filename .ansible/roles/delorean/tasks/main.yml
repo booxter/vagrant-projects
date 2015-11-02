@@ -15,9 +15,5 @@
 - name: fix selinux context for delorean scripts
   shell: chcon -t docker_exec_t ~/delorean/scripts/*
 
-- name: build base docker image for delorean
-  command: su -l vagrant ./delorean/scripts/create_build_image.sh
-  become: yes
-
 - name: install delorean venv
   shell: virtualenv delorean-venv && . delorean-venv/bin/activate && cd delorean && python setup.py develop
