@@ -6,13 +6,22 @@
     - dev
 
   tasks:
-    - name: enable RDO kilo repo
-      yum: name=https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
+    - name: install yum-plugin-priorities
+      yum: name=yum-plugin-priorities state=latest
+      become: yes
+
+    - name: enable delorean deps repo
+      get_url: url=http://trunk.rdoproject.org/centos7/delorean-deps.repo dest=/etc/yum.repos.d/delorean-deps.repo
       become: yes
 
     - name: enable current delorean repo
-      get_url: url=http://trunk.rdoproject.org/centos7/current/delorean.repo dest=/etc/yum.repos.d/delorean.repo
+      get_url: url=http://trunk.rdoproject.org/centos7/current-passed-ci/delorean.repo dest=/etc/yum.repos.d/delorean.repo
       become: yes
+
+    # uncomment below if you want to try out the very latest repo that have not passed CI yet
+    #- name: enable bleeding edge delorean repo
+    #  get_url: url=http://trunk.rdoproject.org/centos7/current/delorean.repo dest=/etc/yum.repos.d/delorean.repo
+    #  become: yes
 
     - name: install packstack
       yum: name=openstack-packstack state=latest
