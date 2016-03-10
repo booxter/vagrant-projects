@@ -18,4 +18,13 @@
       yum: name=openstack-packstack state=latest
       become: yes
 
-# TODO: actually install openstack with packstack
+    # packstack would ask for root password to install the ssh key if not already
+    - authorized_key: user=root key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      become: yes
+
+    - name: packstack aio
+      command: packstack --allinone
+      # non-interactive environment does not include sbin
+      # TODO: investigate why centos does it for us
+      environment:
+        PATH: /usr/bin:/bin:/usr/sbin:/sbin
