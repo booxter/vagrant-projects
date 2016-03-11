@@ -32,7 +32,8 @@
       become: yes
 
     - name: packstack aio
-      command: packstack --allinone
+      # TODO: add --os-neutron-ovs-bridge-interfaces=br-ex:eth0 once https://bugzilla.redhat.com/show_bug.cgi?id=1316856 is fixed
+      command: packstack --allinone --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex --os-neutron-ml2-type-drivers=vxlan,flat
       # non-interactive environment does not include sbin
       # TODO: investigate why centos does it for us
       environment:
