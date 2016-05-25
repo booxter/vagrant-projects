@@ -1,6 +1,10 @@
 ---
 # Install misc python development tools
 
-- name: install misc python development tools
-  yum: name=python-tox,python-pip state=latest
+- name: install pip from packages
+  yum: name=python-pip state=latest
+  become: yes
+
+- name: install fresh python devel tools from pypi
+  command: pip install -U setuptools pip tox
   become: yes
