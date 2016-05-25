@@ -12,8 +12,5 @@
 - name: fetch delorean
   git: repo=https://github.com/openstack-packages/delorean.git dest=~/delorean
 
-- name: fix selinux context for delorean scripts
-  shell: chcon -t docker_exec_t ~/delorean/scripts/*
-
 - name: install delorean venv
   shell: virtualenv delorean-venv && . delorean-venv/bin/activate && cd delorean && python setup.py develop
