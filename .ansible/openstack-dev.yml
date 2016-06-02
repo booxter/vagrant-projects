@@ -1,0 +1,18 @@
+---
+- hosts: all
+
+  roles:
+    - centos
+    - dev
+    - python-dev
+    - delorean
+    - rdopkg
+
+  tasks:
+    - name: fetch neutron repos
+      git: repo=https://git.openstack.org/openstack/{{ item.module }} dest=~/git/{{ item.module }}
+      with_items:
+        - { module: neutron }
+        - { module: neutron-fwaas }
+        - { module: neutron-lbaas }
+        - { module: neutron-vpnaas }

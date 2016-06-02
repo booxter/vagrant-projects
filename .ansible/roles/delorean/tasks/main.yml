@@ -1,0 +1,16 @@
+---
+# Install delorean
+
+- name: install dependencies needed for delorean
+  yum: name=createrepo,selinux-policy state=latest
+  become: yes
+
+- name: install packages needed for delorean virtualenv dependencies
+  yum: name=gcc,libffi-devel,openssl-devel state=latest
+  become: yes
+
+- name: fetch delorean
+  git: repo=https://github.com/openstack-packages/delorean.git dest=~/delorean
+
+- name: install delorean venv
+  shell: virtualenv delorean-venv && . delorean-venv/bin/activate && cd delorean && python setup.py develop

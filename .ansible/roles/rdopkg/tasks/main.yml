@@ -1,0 +1,10 @@
+---
+# Install rdopkg
+
+- name: enable rdopkg repo
+  get_url: url=https://copr.fedoraproject.org/coprs/jruzicka/rdopkg/repo/epel-7/jruzicka-rdopkg-epel-7.repo dest=/etc/yum.repos.d/jruzicka-rdopkg-epel-7.repo
+  become: yes
+
+- name: install packages
+  yum: name=rdopkg,fedora-packager,dnf,dnf-plugins-core state=latest
+  become: yes

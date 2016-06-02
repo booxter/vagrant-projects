@@ -1,0 +1,14 @@
+---
+# Install misc python development tools
+
+- name: install pip from packages
+  yum: name=python-pip state=latest
+  become: yes
+
+- name: install latest python3 interpreter
+  yum: name=python34,python34-devel state=latest
+  become: yes
+
+- name: install fresh python devel tools from pypi
+  command: pip install -U setuptools pip tox
+  become: yes
