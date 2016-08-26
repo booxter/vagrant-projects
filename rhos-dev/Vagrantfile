@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "parallels/centos-7.1"
+  config.vm.box = "centos/7"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -53,9 +53,11 @@ Vagrant.configure(2) do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
-  config.vm.provider "parallels" do |parallels|
-    parallels.memory = "4096"
-    parallels.cpus = 4
+  config.vm.provider "virtualbox" do |v|
+    v.memory = "4096"
+    v.cpus = 4
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
