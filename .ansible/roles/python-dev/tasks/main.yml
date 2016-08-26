@@ -6,7 +6,7 @@
   become: yes
 
 - name: install latest python3 interpreter
-  yum: name=python34,python34-devel state=latest
+  yum: name=python34,python34-devel,python-devel state=latest
   become: yes
 
 - name: install fresh python devel tools from pypi
