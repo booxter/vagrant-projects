@@ -6,7 +6,7 @@
   become: yes
 
 - name: install packages needed for delorean virtualenv dependencies
-  yum: name=gcc,libffi-devel,openssl-devel state=latest
+  yum: name=gcc,libffi-devel,openssl-devel,libyaml-devel state=latest
   become: yes
 
 - name: fetch delorean
