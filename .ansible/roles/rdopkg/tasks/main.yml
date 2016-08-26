@@ -5,6 +5,10 @@
   get_url: url=https://copr.fedoraproject.org/coprs/jruzicka/rdopkg/repo/epel-7/jruzicka-rdopkg-epel-7.repo dest=/etc/yum.repos.d/jruzicka-rdopkg-epel-7.repo
   become: yes
 
+- name: hack around broken dependency for rdopkg
+  yum: name=https://kojipkgs.fedoraproject.org//packages/python-parsley/1.3/3.fc25/noarch/python-parsley-1.3-3.fc25.noarch.rpm
+  become: yes
+
 - name: install packages
   yum: name=rdopkg,fedora-packager,dnf,dnf-plugins-core state=latest
   become: yes
