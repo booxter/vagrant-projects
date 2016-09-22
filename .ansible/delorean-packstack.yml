@@ -10,6 +10,14 @@
       yum: name=yum-plugin-priorities state=latest
       become: yes
 
+    - name: install epel repo
+      yum: name=http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present
+      become: yes
+
+    - name: enable epel repo
+      command: yum-config-manager --enable epel
+      become: yes
+
     - name: enable delorean deps repo
       #get_url: url=http://trunk.rdoproject.org/centos7-liberty/delorean-deps.repo dest=/etc/yum.repos.d/delorean-deps.repo
       get_url: url=http://trunk.rdoproject.org/centos7/delorean-deps.repo dest=/etc/yum.repos.d/delorean-deps.repo
