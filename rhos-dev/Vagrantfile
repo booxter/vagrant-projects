@@ -53,11 +53,12 @@ Vagrant.configure(2) do |config|
   #
   # View the documentation for the provider you are using for more
   # information on available options.
-  config.vm.provider "virtualbox" do |v|
+  config.vm.provider "libvirt" do |v|
     v.memory = "4096"
     v.cpus = 4
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    v.host = "192.168.0.250"
+    v.socket = "/var/run/libvirt/libvirt-sock"
+    v.connect_via_ssh = true
   end
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
