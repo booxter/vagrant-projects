@@ -1,0 +1,20 @@
+---
+- hosts: all
+  roles:
+      - latest
+      - known_hosts
+
+      - homedir
+      - dev
+      - rhosp
+
+  tasks:
+    - name: install kerberos toolkit
+      dnf:
+          name: krb5-workstation
+          state: present
+      become: yes
+
+    - name: sync kerberos configuration
+      copy: src=/etc/krb5.conf dest=/etc/krb5.conf
+      become: yes

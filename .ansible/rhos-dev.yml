@@ -1,7 +1,0 @@
----
-- hosts: all
-
-  roles:
-    - rhos-dev
-
-- include: openstack-dev.yml
