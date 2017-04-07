@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+      - centos
+      - latest
+      - known_hosts
+
+      - homedir
+      - dev
+      - rhosp
+
+      - devstack
