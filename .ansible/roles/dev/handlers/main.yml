@@ -1,3 +1,0 @@
----
-- name: install homedir
-  command: rsync -rd /home/homedir/ ~

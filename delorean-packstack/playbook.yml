@@ -8,4 +8,5 @@
       - homedir
       - dev
 
-      - devstack
+      - delorean
+      - packstack
