@@ -57,6 +57,7 @@ Vagrant.configure(2) do |config|
     v.memory = "6144"
     v.cpus = 2
     v.host = "192.168.0.250"
+    v.suspend_mode = "managedsave"
     v.connect_via_ssh = true
   end
 
